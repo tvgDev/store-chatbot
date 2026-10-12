@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A" />
+      <stop offset="1" stop-color="#020617" />
+    </linearGradient>
+    <linearGradient id="cubeTop" x1="8" y1="5" x2="24" y2="15" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#818CF8" />
+      <stop offset="1" stop-color="#6366F1" />
+    </linearGradient>
+    <linearGradient id="cubeLeft" x1="6" y1="13" x2="16" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F46E5" />
+      <stop offset="1" stop-color="#3730A3" />
+    </linearGradient>
+    <linearGradient id="cubeRight" x1="16" y1="13" x2="26" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366F1" />
+      <stop offset="1" stop-color="#4338CA" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base com bordas arredondadas -->
+  <rect width="32" height="32" rx="8" fill="url(#bgGrad)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+
+  <!-- Cubo Isométrico TechStore -->
+  <path d="M16 6L25 11.2L16 16.5L7 11.2L16 6Z" fill="url(#cubeTop)"/>
+  <path d="M7 12.5L15.2 17.3V26.5L7 21.7V12.5Z" fill="url(#cubeLeft)"/>
+  <path d="M16.8 17.3L25 12.5V21.7L16.8 26.5V17.3Z" fill="url(#cubeRight)"/>
+
+  <!-- Circuit Trace Core -->
+  <path d="M16 11V18M12.5 15L16 17L19.5 15" stroke="#C7D2FE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

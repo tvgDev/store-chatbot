@@ -13,9 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TechStore | Atendimento Virtual Inteligente",
+  title: "TechStore | Atendimento Virtual Oficial",
   description:
-    "Chatbot de atendimento para consulta em tempo real da disponibilidade e quantidade de produtos em estoque na TechStore.",
+    "Chatbot oficial de atendimento para consulta em tempo real da disponibilidade e quantidade de produtos em estoque na TechStore.",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export default function RootLayout({
