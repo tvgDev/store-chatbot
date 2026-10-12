@@ -1,0 +1,130 @@
+[
+  {
+    "id": "PROD-001",
+    "name": "Samsung Galaxy S24 Ultra 256GB",
+    "category": "Smartphones",
+    "quantity": 12,
+    "price": 6299.00,
+    "description": "Smartphone topo de linha com tela AMOLED Dinâmica 2X de 6.8 polegadas, câmera quádrupla de 200MP e processador Snapdragon 8 Gen 3."
+  },
+  {
+    "id": "PROD-002",
+    "name": "Apple iPhone 15 Pro Max 256GB",
+    "category": "Smartphones",
+    "quantity": 0,
+    "price": 7999.00,
+    "description": "Acabamento em titânio aeroespacial, chip A17 Pro, botão de Ação e zoom óptico de 5x."
+  },
+  {
+    "id": "PROD-003",
+    "name": "Xiaomi 14 512GB",
+    "category": "Smartphones",
+    "quantity": 8,
+    "price": 4499.00,
+    "description": "Lentes profissionais Leica, carregamento ultra-rápido de 90W e processador Snapdragon 8 Gen 3."
+  },
+  {
+    "id": "PROD-004",
+    "name": "Notebook Dell XPS 14 Core Ultra 7",
+    "category": "Notebooks",
+    "quantity": 5,
+    "price": 9499.00,
+    "description": "Ultrabook premium com 32GB RAM, 1TB SSD, tela OLED 3.2K touch e placa gráfica dedicada RTX 4050."
+  },
+  {
+    "id": "PROD-005",
+    "name": "Apple MacBook Air 13 polegadas M2",
+    "category": "Notebooks",
+    "quantity": 7,
+    "price": 7199.00,
+    "description": "Design ultrafino, bateria com até 18 horas de autonomia, 16GB de memória unificada e 512GB SSD."
+  },
+  {
+    "id": "PROD-006",
+    "name": "Lenovo ThinkPad E14 Gen 5 AMD",
+    "category": "Notebooks",
+    "quantity": 15,
+    "price": 3899.00,
+    "description": "Notebook corporativo durável, processador AMD Ryzen 7 7730U, 16GB RAM e 512GB SSD."
+  },
+  {
+    "id": "PROD-007",
+    "name": "Monitor Gamer LG UltraGear 27\" 144Hz IPS",
+    "category": "Monitores",
+    "quantity": 18,
+    "price": 1299.00,
+    "description": "Resolução Full HD, tempo de resposta de 1ms MBR, HDR10 e compatibilidade com NVIDIA G-Sync e AMD FreeSync."
+  },
+  {
+    "id": "PROD-008",
+    "name": "Monitor Dell UltraSharp 32\" 4K USB-C",
+    "category": "Monitores",
+    "quantity": 2,
+    "price": 4399.00,
+    "description": "Painel IPS Black com contraste aprimorado, hub de conectividade USB-C 90W e 100% sRGB para profissionais."
+  },
+  {
+    "id": "PROD-009",
+    "name": "Teclado Mecânico Sem Fio Keychron K2 RGB",
+    "category": "Periféricos",
+    "quantity": 20,
+    "price": 549.00,
+    "description": "Layout 75% compacto, switches Gateron G Pro Brown, conexão Bluetooth/USB-C e compatível com Mac e Windows."
+  },
+  {
+    "id": "PROD-010",
+    "name": "Mouse Sem Fio Logitech MX Master 3S",
+    "category": "Periféricos",
+    "quantity": 14,
+    "price": 489.00,
+    "description": "Sensor de 8.000 DPI com cliques silenciosos, rolagem MagSpeed eletromagnética e conexão multidispositivo Flow."
+  },
+  {
+    "id": "PROD-011",
+    "name": "Fone Bluetooth Sony WH-1000XM5 com ANC",
+    "category": "Áudio",
+    "quantity": 4,
+    "price": 2199.00,
+    "description": "Cancelamento de ruído líder de mercado, áudio Hi-Res sem fio, 8 microfones e até 30 horas de bateria."
+  },
+  {
+    "id": "PROD-012",
+    "name": "Headset Gamer HyperX Cloud II Red",
+    "category": "Áudio",
+    "quantity": 10,
+    "price": 429.00,
+    "description": "Som surround virtual 7.1 via placa de áudio USB, drivers de 53mm e almofadas com espuma memory foam."
+  },
+  {
+    "id": "PROD-013",
+    "name": "Apple AirPods Pro (2ª Geração) USB-C",
+    "category": "Áudio",
+    "quantity": 0,
+    "price": 1899.00,
+    "description": "Cancelamento Ativo de Ruído até 2x mais potente, Áudio Espacial Personalizado e estojo MagSafe com USB-C."
+  },
+  {
+    "id": "PROD-014",
+    "name": "Cadeira Gamer ThunderX3 TGC12 Preta",
+    "category": "Mobiliário Gamer",
+    "quantity": 0,
+    "price": 1150.00,
+    "description": "Revestimento em courino com detalhes em fibra de carbono, almofadas para lombar/pescoço e reclinação de 180 graus."
+  },
+  {
+    "id": "PROD-015",
+    "name": "Webcam Logitech C920 Full HD 1080p",
+    "category": "Periféricos",
+    "quantity": 22,
+    "price": 389.00,
+    "description": "Transmissão Full HD 1080p a 30fps, foco automático rápido, correção de luz automática e microfones estéreo duplos."
+  },
+  {
+    "id": "PROD-016",
+    "name": "SSD Kingston NV2 1TB M.2 2280 NVMe",
+    "category": "Armazenamento",
+    "quantity": 30,
+    "price": 399.00,
+    "description": "Velocidades de leitura de até 3500MB/s e gravação de até 2100MB/s com interface PCIe 4.0 x4."
+  }
+]
