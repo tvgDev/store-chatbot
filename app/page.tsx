@@ -107,6 +107,9 @@ export default function ChatbotPage() {
     setInput("");
     setIsLoading(true);
 
+    const assistantId = `assistant-${Date.now()}`;
+    let hasCreatedAssistantMessage = false;
+
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -116,6 +119,7 @@ export default function ChatbotPage() {
             role: m.role,
             content: m.content,
           })),
+          stream: true,
         }),
       });
 
@@ -123,29 +127,99 @@ export default function ChatbotPage() {
         throw new Error(`Erro ${response.status}: Falha na resposta da API`);
       }
 
-      const data = await response.json();
+      const contentType = response.headers.get("content-type") || "";
 
-      const assistantMessage: Message = {
-        id: `assistant-${Date.now()}`,
-        role: "assistant",
-        content: data.reply || "Não consegui obter uma resposta para essa pergunta no momento.",
-        timestamp: new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }),
-        provider: data.provider || "Google Gemini",
-        model: data.model || "gemini-3.5-flash-lite",
-      };
+      if (contentType.includes("text/event-stream") && response.body) {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let accumulatedContent = "";
+        let providerName = "Google Gemini";
+        let modelName = "gemini-3.5-flash";
+        let buffer = "";
 
-      setMessages((prev) => [...prev, assistantMessage]);
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          const parts = buffer.split("\n\n");
+          buffer = parts.pop() || "";
+
+          for (const part of parts) {
+            const trimmed = part.trim();
+            if (!trimmed) continue;
+
+            let event = "message";
+            let dataStr = "";
+
+            const eventMatch = trimmed.match(/^event:\s*(.+)$/m);
+            if (eventMatch) event = eventMatch[1].trim();
+
+            const dataMatch = trimmed.match(/^data:\s*(.+)$/m);
+            if (dataMatch) dataStr = dataMatch[1].trim();
+
+            if (event === "meta") {
+              try {
+                const meta = JSON.parse(dataStr);
+                if (meta.provider) providerName = meta.provider;
+                if (meta.model) modelName = meta.model;
+              } catch {}
+            } else if (event === "chunk") {
+              try {
+                const chunkData = JSON.parse(dataStr);
+                const chunkText = chunkData.text || "";
+                accumulatedContent += chunkText;
+
+                if (!hasCreatedAssistantMessage) {
+                  hasCreatedAssistantMessage = true;
+                  setIsLoading(false);
+                  const newMsg: Message = {
+                    id: assistantId,
+                    role: "assistant",
+                    content: accumulatedContent,
+                    timestamp: new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }),
+                    provider: providerName,
+                    model: modelName,
+                  };
+                  setMessages((prev) => [...prev, newMsg]);
+                } else {
+                  setMessages((prev) =>
+                    prev.map((msg) =>
+                      msg.id === assistantId
+                        ? { ...msg, content: accumulatedContent, provider: providerName, model: modelName }
+                        : msg
+                    )
+                  );
+                }
+              } catch {}
+            }
+          }
+        }
+      } else {
+        const data = await response.json();
+        const assistantMessage: Message = {
+          id: assistantId,
+          role: "assistant",
+          content: data.reply || "Não consegui obter uma resposta para essa pergunta no momento.",
+          timestamp: new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }),
+          provider: data.provider || "Google Gemini",
+          model: data.model || "gemini-3.5-flash",
+        };
+        setMessages((prev) => [...prev, assistantMessage]);
+      }
     } catch (err: unknown) {
       console.error("Erro na comunicação:", err);
-      const errorMessage: Message = {
-        id: `error-${Date.now()}`,
-        role: "assistant",
-        content:
-          "⚠️ Ocorreu uma instabilidade na comunicação com o servidor de IA. Por favor, tente novamente.",
-        timestamp: new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }),
-        provider: "Sistema",
-      };
-      setMessages((prev) => [...prev, errorMessage]);
+      if (!hasCreatedAssistantMessage) {
+        const errorMessage: Message = {
+          id: `error-${Date.now()}`,
+          role: "assistant",
+          content:
+            "⚠️ Ocorreu uma instabilidade na comunicação com o servidor de IA. Por favor, tente novamente.",
+          timestamp: new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }),
+          provider: "Sistema",
+        };
+        setMessages((prev) => [...prev, errorMessage]);
+      }
     } finally {
       setIsLoading(false);
       setTimeout(() => inputRef.current?.focus(), 60);
@@ -340,6 +414,13 @@ export default function ChatbotPage() {
                         {/* Rodapé da Resposta */}
                         <div className="flex items-center gap-3 text-[11px] text-zinc-500 pt-1">
                           <span>{m.timestamp}</span>
+
+                          {m.provider && (
+                            <span className="inline-flex items-center gap-1 text-[10px] text-zinc-400 bg-white/[0.04] px-2 py-0.5 rounded-full border border-white/5 font-mono">
+                              <Sparkles className="w-2.5 h-2.5 text-indigo-400" />
+                              {m.provider} {m.model ? `• ${m.model}` : ""}
+                            </span>
+                          )}
 
                           <button
                             onClick={() => copyToClipboard(m.content, m.id)}
