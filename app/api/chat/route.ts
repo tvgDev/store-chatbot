@@ -139,7 +139,7 @@ ${SYSTEM_PROMPT_RULES}`;
           try {
             const fallbackResult = queryInventoryLocally(lastUserMessage);
             sendEvent("meta", {
-              provider: "Assistente TechStore (Modo Rápido)",
+              provider: "Assistente TechStore",
               model: "motor-inteligente-v2",
               isDemo: true,
             });
@@ -212,7 +212,7 @@ ${SYSTEM_PROMPT_RULES}`;
     const fallbackAnswer = queryInventoryLocally(lastUserMessage);
     return NextResponse.json({
       reply: fallbackAnswer.answer,
-      provider: "Assistente TechStore (Modo Rápido)",
+      provider: "Assistente TechStore",
       model: "motor-inteligente-v2",
       isDemo: true,
     });
