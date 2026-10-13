@@ -418,7 +418,7 @@ export default function ChatbotPage() {
                           {m.provider && (
                             <span className="inline-flex items-center gap-1 text-[10px] text-zinc-400 bg-white/[0.04] px-2 py-0.5 rounded-full border border-white/5 font-mono">
                               <Sparkles className="w-2.5 h-2.5 text-indigo-400" />
-                              {m.provider} {m.model ? `• ${m.model}` : ""}
+                              {m.provider}
                             </span>
                           )}
 
